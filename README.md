@@ -2,9 +2,9 @@
 
 Lord Of Cinder is a playground for me to play around with the [Cinder library](https://libcinder.org/) for creative coding. 
 
-There are no plans to make this repository anything specific or to implement anything specific. At the time of writing this, I have no experience with 2D/3D graphics/creative coding whatsoever, and therefore I want to see what it looks like and what I can do with it. I'm also simply curious about libcinder and want to poke around with it and see what it can do.
+There are no plans to make this repository anything specific or to implement anything specific. At the time of writing this, I have no experience with 2D/3D graphics/creative coding whatsoever, and therefore I want to see what it looks like and what I can do with it. I'm also simply curious about libcinder and want to poke around it, get a feel for it and see what it can do.
 
-"Lord Of Cinder" is a reference to the Dark Souls game series. This was what popped out in my brain immediately after I'd first encountered libcinder a couple of years ago.
+"Lord Of Cinder" is a reference to the Dark Souls game series. This was what popped up in my brain immediately after I'd first encountered libcinder a couple of years ago.
 
 There won't be any issues or milestones or projects created for now, and no branches. Everything is pushed directly into master. If this project ever becomes something bigger than a playground, then I'll think about formalizing it more.
 
@@ -29,7 +29,7 @@ Of course, libcinder has to already be properly set up before you attempt to bui
 ```console
 cmake .. -DCINDER_PATH=<your/path/to/libcinder/here>
 ```
-You may also have to set the cmake build file generator accordingly. I usually use either GCC or Ninja, you may need to use Visual Studio if your on Windows for example. Example generator:
+You may also have to set the cmake build file generator accordingly. I usually use either GCC or Ninja, you may need to use Visual Studio if you're on Windows for example. Example generator:
 ```console
 cmake .. -G "Visual Studio 16 2019 Win64"
 ```
