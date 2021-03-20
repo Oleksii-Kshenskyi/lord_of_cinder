@@ -1,17 +1,19 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
+#include "cinder/CameraUi.h"
 
 class LordOfCinderApp: public ci::app::App {
   public:
     void setup() override;
-    void update() override;
+    void mouseDown(ci::app::MouseEvent event) override;
+    void mouseDrag(ci::app::MouseEvent event) override;
     void resize() override;
     void draw() override;
 
   private:
     ci::CameraPersp camera;
-    ci::mat4 cube_rotation;
+    ci::CameraUi camera_ui;
     ci::gl::BatchRef cube_batch;
     ci::Color cube_color;
 
@@ -29,15 +31,19 @@ void LordOfCinderApp::setup() {
     this->cube_color = ci::Color::hex(this->los_color_red);
 
     this->camera.lookAt(ci::vec3(5,5,5), ci::vec3(0));
+    this->camera_ui.setCamera(&this->camera);
+}
+
+void LordOfCinderApp::mouseDown(ci::app::MouseEvent event) {
+    this->camera_ui.mouseDown(event);
+}
+
+void LordOfCinderApp::mouseDrag(ci::app::MouseEvent event) {
+    this->camera_ui.mouseDrag(event);
 }
 
 void LordOfCinderApp::resize() {
-    this->camera.setPerspective(30, ci::app::getWindowAspectRatio(), 1, 1000);
-    ci::gl::setMatrices(this->camera);
-}
-
-void LordOfCinderApp::update() {
-    this->cube_rotation *= ci::rotate(ci::toRadians(0.2f), ci::normalize(ci::vec3(0, 1, 0)));
+    this->camera.setAspectRatio(ci::app::getWindowAspectRatio());
 }
 
 void LordOfCinderApp::draw()
@@ -47,9 +53,6 @@ void LordOfCinderApp::draw()
     ci::gl::enableDepthWrite();
 
     ci::gl::setMatrices(this->camera);
-
-    // ci::gl::ScopedModelMatrix model_scope;
-    ci::gl::multModelMatrix(this->cube_rotation);
 
     ci::gl::color(this->cube_color);
 	this->cube_batch->draw();
